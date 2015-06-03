@@ -52,9 +52,11 @@
     <maven.failsafe.plugin.version>2.18.1</maven.failsafe.plugin.version>
     <maven.compiler.plugin.version>3.3</maven.compiler.plugin.version>
     <maven.gpg.plugin.version>1.6</maven.gpg.plugin.version>
+    <maven.deploy.plugin.version>2.8.2</maven.deploy.plugin.version>
     <maven.release.plugin.version>2.5.2</maven.release.plugin.version>
     <maven.source.plugin.version>2.4</maven.source.plugin.version>
     <maven.javadoc.plugin.version>2.10.3</maven.javadoc.plugin.version>
+    <license.plugin.version>2.11</license.plugin.version>
     <jacoco.plugin.version>0.7.5.201505241946</jacoco.plugin.version>
 
     <java.language.level>1.7</java.language.level>
@@ -144,6 +146,13 @@
             </goals>
           </execution>
         </executions>
+      </plugin>
+
+      <plugin>
+        <!-- Deploy packaged artifacts. -->
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-deploy-plugin</artifactId>
+        <version>${maven.deploy.plugin.version}</version>
       </plugin>
 
       <plugin>
@@ -281,6 +290,32 @@
                 <dataFile>${project.build.directory}/jacoco-both.exec</dataFile>
                 <outputDirectory>${project.reporting.outputDirectory}/jacoco-both</outputDirectory>
               </configuration>
+            </execution>
+          </executions>
+        </plugin>
+
+        <plugin>
+          <!-- Help with license headers. mvn license:format inserts the Apache 2 license. -->
+          <groupId>com.mycila</groupId>
+          <artifactId>license-maven-plugin</artifactId>
+          <version>${license.plugin.version}</version>
+          <configuration>
+            <header>com/mycila/maven/plugin/license/templates/APACHE-2.txt</header>
+            <properties>
+              <owner>Lable</owner>
+              <email>info@lable.nl</email>
+            </properties>
+            <excludes>
+              <exclude>**/README.md</exclude>
+              <exclude>src/test/resources/**</exclude>
+              <exclude>src/main/resources/**</exclude>
+            </excludes>
+          </configuration>
+          <executions>
+            <execution>
+              <goals>
+                <goal>check</goal>
+              </goals>
             </execution>
           </executions>
         </plugin>
