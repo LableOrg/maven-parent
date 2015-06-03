@@ -19,7 +19,7 @@
 
   <groupId>org.lable.oss</groupId>
   <artifactId>parent</artifactId>
-  <version>1.0</version>
+  <version>1.1-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Maven parent for Lable projects</name>
@@ -69,7 +69,7 @@
     <connection>scm:git:git@github.com:LableOrg/maven-parent.git</connection>
     <developerConnection>scm:git:git@github.com:LableOrg/maven-parent.git</developerConnection>
     <url>http://github.com:LableOrg/maven-parent.git</url>
-    <tag>v1.0</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <dependencies>
