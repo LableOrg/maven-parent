@@ -74,6 +74,17 @@
     <tag>HEAD</tag>
   </scm>
 
+  <distributionManagement>
+    <snapshotRepository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </snapshotRepository>
+    <repository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+    </repository>
+  </distributionManagement>
+
   <dependencies>
     <!-- Testing dependencies. -->
     <dependency>
@@ -130,22 +141,9 @@
           <autoVersionSubmodules>true</autoVersionSubmodules>
           <!-- A local checkout is a *lot* faster than cloning the complete repository. -->
           <localCheckout>true</localCheckout>
+          <useReleaseProfile>false</useReleaseProfile>
+          <releaseProfiles>release</releaseProfiles>
         </configuration>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-gpg-plugin</artifactId>
-        <version>${maven.gpg.plugin.version}</version>
-        <executions>
-          <execution>
-            <id>sign-artifacts</id>
-            <phase>verify</phase>
-            <goals>
-              <goal>sign</goal>
-            </goals>
-          </execution>
-        </executions>
       </plugin>
 
       <plugin>
@@ -171,21 +169,6 @@
         <configuration>
           <attach>true</attach>
         </configuration>
-      </plugin>
-
-      <plugin>
-        <!-- Generate javadoc and create javadocs jars. -->
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-javadoc-plugin</artifactId>
-        <version>${maven.javadoc.plugin.version}</version>
-        <executions>
-          <execution>
-            <id>attach-javadocs</id>
-            <goals>
-              <goal>jar</goal>
-            </goals>
-          </execution>
-        </executions>
       </plugin>
     </plugins>
 
@@ -295,7 +278,8 @@
         </plugin>
 
         <plugin>
-          <!-- Help with license headers. mvn license:format inserts the Apache 2 license. -->
+          <!-- Help with license headers. This will stop the build if required headers are missing.
+               `mvn license:format` inserts the Apache 2 license headers automatically. -->
           <groupId>com.mycila</groupId>
           <artifactId>license-maven-plugin</artifactId>
           <version>${license.plugin.version}</version>
@@ -322,5 +306,46 @@
       </plugins>
     </pluginManagement>
   </build>
+
+  <profiles>
+    <profile>
+      <!-- Release profile. These plugins only need to be run when artifacts are released. -->
+      <id>release</id>
+      <build>
+        <plugins>
+          <plugin>
+            <!-- Sign our artifacts. -->
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>${maven.gpg.plugin.version}</version>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+
+          <plugin>
+            <!-- Generate javadoc and create javadocs jars. -->
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <version>${maven.javadoc.plugin.version}</version>
+            <executions>
+              <execution>
+                <id>attach-javadocs</id>
+                <goals>
+                  <goal>jar</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 </project>
 
