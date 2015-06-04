@@ -70,7 +70,7 @@
   <scm>
     <connection>scm:git:git@github.com:LableOrg/maven-parent.git</connection>
     <developerConnection>scm:git:git@github.com:LableOrg/maven-parent.git</developerConnection>
-    <url>http://github.com:LableOrg/maven-parent.git</url>
+    <url>https://github.com/LableOrg/maven-parent.git</url>
     <tag>HEAD</tag>
   </scm>
 
