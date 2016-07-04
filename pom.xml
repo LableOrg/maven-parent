@@ -135,6 +135,7 @@
           <target>${java.language.level}</target>
           <compilerArgs>
             <arg>-Xlint</arg>
+            <arg>-Xdoclint</arg>
           </compilerArgs>
         </configuration>
       </plugin>
