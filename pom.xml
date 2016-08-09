@@ -147,13 +147,19 @@
         <configuration>
           <!-- Disable the site-deploy target, because we don't deploy the generated site contents anywhere. -->
           <goals>deploy</goals>
+          <!-- Pass the integration test argument. Any project that uses this to activate integration
+               testing profiles normally disabled due to the time it takes to execute them will have
+               their integration testing profiles actived. -->
+          <arguments>-Dit</arguments>
           <tagNameFormat>v@{project.version}</tagNameFormat>
           <!-- All child modules follow the parent version. -->
           <autoVersionSubmodules>true</autoVersionSubmodules>
           <!-- A local checkout is a *lot* faster than cloning the complete repository. -->
           <localCheckout>true</localCheckout>
           <useReleaseProfile>false</useReleaseProfile>
-          <releaseProfiles>release</releaseProfiles>
+          <!-- Enable the release profile (code signing) and any integration testing profile if it exists.
+               The release:prepare target does not use this list, so '-Dit' is passed as well. -->
+          <releaseProfiles>release,it</releaseProfiles>
         </configuration>
       </plugin>
 
