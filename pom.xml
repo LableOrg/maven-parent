@@ -157,9 +157,8 @@
           <!-- A local checkout is a *lot* faster than cloning the complete repository. -->
           <localCheckout>true</localCheckout>
           <useReleaseProfile>false</useReleaseProfile>
-          <!-- Enable the release profile (code signing) and any integration testing profile if it exists.
-               The release:prepare target does not use this list, so '-Dit' is passed as well. -->
-          <releaseProfiles>release,it</releaseProfiles>
+          <!-- Enable the release profile (code signing). -->
+          <releaseProfiles>release</releaseProfiles>
         </configuration>
       </plugin>
 
