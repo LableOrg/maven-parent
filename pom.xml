@@ -306,6 +306,11 @@
               <owner>Lable</owner>
               <email>info@lable.nl</email>
             </properties>
+            <mapping>
+              <!-- Instead of the default JAVADOC_STYLE, because Javadoc comments
+                   are not allowed at the start of file. -->
+              <java>SLASHSTAR_STYLE</java>
+            </mapping>
             <excludes>
               <exclude>**/README.md</exclude>
               <exclude>LICENSE</exclude>
