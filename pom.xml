@@ -69,7 +69,7 @@
     <license.plugin.version>2.11</license.plugin.version>
     <jacoco.plugin.version>0.7.5.201505241946</jacoco.plugin.version>
 
-    <java.language.level>1.7</java.language.level>
+    <java.language.level>1.8</java.language.level>
 
     <!-- Dependency versions. -->
     <junit.version>4.12</junit.version>
