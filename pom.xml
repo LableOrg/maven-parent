@@ -67,7 +67,7 @@
     <maven.source.plugin.version>3.0.1</maven.source.plugin.version>
     <maven.javadoc.plugin.version>3.0.1</maven.javadoc.plugin.version>
     <license.plugin.version>2.11</license.plugin.version>
-    <jacoco.plugin.version>0.8.1</jacoco.plugin.version>
+    <jacoco.plugin.version>0.8.2</jacoco.plugin.version>
 
     <java.language.level>1.8</java.language.level>
 
