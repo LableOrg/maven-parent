@@ -136,6 +136,7 @@
           <compilerArgs>
             <arg>-Xlint</arg>
             <arg>-Xdoclint</arg>
+            <arg>-parameters</arg>
           </compilerArgs>
         </configuration>
       </plugin>
