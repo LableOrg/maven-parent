@@ -14,13 +14,12 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.lable.oss</groupId>
   <artifactId>parent</artifactId>
-  <version>1.15-SNAPSHOT</version>
+  <version>1.15</version>
   <packaging>pom</packaging>
 
   <name>Maven parent for Lable projects</name>
@@ -88,7 +87,7 @@
     <connection>scm:git:git@github.com:LableOrg/maven-parent.git</connection>
     <developerConnection>scm:git:git@github.com:LableOrg/maven-parent.git</developerConnection>
     <url>https://github.com/LableOrg/maven-parent.git</url>
-    <tag>HEAD</tag>
+    <tag>v1.15</tag>
   </scm>
 
   <distributionManagement>
@@ -286,7 +285,7 @@
               </goals>
               <configuration>
                 <dataFile>${project.build.directory}/jacoco-unit.exec</dataFile>
-                <rules/>
+                <rules />
               </configuration>
             </execution>
             <execution>
