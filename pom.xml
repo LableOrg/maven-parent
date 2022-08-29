@@ -14,7 +14,8 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.lable.oss</groupId>
@@ -56,6 +57,10 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.build.outputEncoding>UTF-8</project.build.outputEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <!-- Skip integration tests by default, activated in profiles. -->
+    <skipITs>true</skipITs>
+    <!-- Disable the memcached plugin used for some integration tests too. -->
+    <jmemcached.disable>true</jmemcached.disable>
 
     <!-- Plugin versions. -->
     <maven.surefire.plugin.version>2.22.2</maven.surefire.plugin.version>
@@ -281,7 +286,7 @@
               </goals>
               <configuration>
                 <dataFile>${project.build.directory}/jacoco-unit.exec</dataFile>
-                <rules />
+                <rules/>
               </configuration>
             </execution>
             <execution>
@@ -362,6 +367,10 @@
     <profile>
       <!-- Release profile. These plugins only need to be run when artifacts are released. -->
       <id>release</id>
+      <properties>
+        <skipITs>false</skipITs>
+        <jmemcached.disable>false</jmemcached.disable>
+      </properties>
       <build>
         <plugins>
           <plugin>
@@ -396,6 +405,21 @@
           </plugin>
         </plugins>
       </build>
+    </profile>
+
+    <profile>
+      <!-- Integration testing profile. -->
+      <!-- Run integration tests only when this profile is active. -->
+      <id>it</id>
+      <activation>
+        <property>
+          <name>it</name>
+        </property>
+      </activation>
+      <properties>
+        <skipITs>false</skipITs>
+        <jmemcached.disable>false</jmemcached.disable>
+      </properties>
     </profile>
   </profiles>
 </project>
